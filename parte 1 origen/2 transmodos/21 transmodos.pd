@@ -1,4 +1,4 @@
-#N canvas 870 23 447 647 10;
+#N canvas 683 1334 447 647 10;
 #X obj 363 15 cnv 10 60 20 empty empty chak 22 11 1 20 -228856 -262144
 0;
 #X obj 42 477 out~;
@@ -7,7 +7,7 @@ secuencia randómica. Es la implementación mas simple del ruido blanco.
 , f 40;
 #X obj 180 167 rms~ -db;
 #X obj 180 195 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--228856 -1 -1 -10.752 256;
+-228856 -1 -1 0 256;
 #X floatatom 145 333 0 0 0 0 - - -;
 #X msg 105 300 0;
 #X obj 85 428 fexpr~ $x1 + $x1[$f2];
@@ -40,10 +40,14 @@ secuencia randómica. Es la implementación mas simple del ruido blanco.
 #X connect 4 1 2 0;
 #X connect 5 0 3 0;
 #X restore 146 259 pd line;
-#X obj 144 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 144 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 41 134 expr~ random(-100 \, 100)/100.;
-#X obj 239 507 block~ 10000;
+#X floatatom 375 552 5 0 0 0 - - -;
+#X obj 194 618 switch~ 256 1 1;
+#X msg 194 542 set 256 1 1;
+#X msg 215 568 set 4096 2 1;
+#X msg 279 591 set 512 1 \$1;
 #X connect 3 0 4 0;
 #X connect 5 0 7 1;
 #X connect 5 0 14 0;
@@ -63,3 +67,7 @@ secuencia randómica. Es la implementación mas simple del ruido blanco.
 #X connect 17 0 3 0;
 #X connect 17 0 7 0;
 #X connect 17 0 10 0;
+#X connect 18 0 22 0;
+#X connect 20 0 19 0;
+#X connect 21 0 19 0;
+#X connect 22 0 19 0;

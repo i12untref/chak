@@ -1,0 +1,64 @@
+#N canvas 870 23 447 647 10;
+#X obj 363 15 cnv 10 60 20 empty empty chak 22 11 1 20 -228856 -262144
+0;
+#X obj 42 477 out~;
+#X text 32 39 convierto un conjunto de amplitudes de muestra en una
+secuencia randómica. Es la implementación mas simple del ruido blanco.
+, f 40;
+#X obj 180 167 rms~ -db;
+#X obj 180 195 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-228856 -1 -1 0 256;
+#X floatatom 145 333 0 0 0 0 - - -;
+#X msg 105 300 0;
+#X obj 85 428 fexpr~ $x1 + $x1[$f2];
+#X msg 184 300 -20;
+#X msg 144 300 -10;
+#X obj 235 260 tabwrite~ zz;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array zz 256 float 2;
+#X coords 0 2 256 -2 70 50 1 0 0;
+#X restore 323 259 graph;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array zy 256 float 2;
+#X coords 0 2 256 -2 70 50 1 0 0;
+#X restore 326 455 graph;
+#X obj 238 455 tabwrite~ zy;
+#X obj 237 373 t b b;
+#N canvas 0 23 450 300 line 0;
+#X obj 122 144 line;
+#X msg 123 115 0 \, -100 4000;
+#X msg 218 116 0 \, -100 4000;
+#X obj 124 50 metro 4000;
+#X obj 123 84 togedge;
+#X obj 123 28 inlet;
+#X obj 122 169 outlet;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
+#X connect 4 1 2 0;
+#X connect 5 0 3 0;
+#X restore 146 259 pd line;
+#X obj 144 236 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 41 134 expr~ random(-100 \, 100)/100.;
+#X connect 3 0 4 0;
+#X connect 5 0 7 1;
+#X connect 5 0 14 0;
+#X connect 6 0 5 0;
+#X connect 6 0 14 0;
+#X connect 7 0 13 0;
+#X connect 7 0 1 1;
+#X connect 8 0 5 0;
+#X connect 8 0 14 0;
+#X connect 9 0 5 0;
+#X connect 9 0 14 0;
+#X connect 14 0 10 0;
+#X connect 14 1 13 0;
+#X connect 15 0 5 0;
+#X connect 16 0 15 0;
+#X connect 17 0 1 0;
+#X connect 17 0 3 0;
+#X connect 17 0 7 0;
+#X connect 17 0 10 0;
